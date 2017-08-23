@@ -20,11 +20,11 @@
  */
 package br.com.surittec.surispring.example.controller.pessoa;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.ocpsoft.rewrite.annotation.Join;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.surittec.surispring.example.domain.entity.Pessoa;
 import br.com.surittec.surispring.example.service.PessoaService;
@@ -37,7 +37,7 @@ public class ListarPessoasController extends Controller {
 
 	private static final long serialVersionUID = 1L;
 
-	@Inject
+	@Autowired
 	private PessoaService pessoaService;
 
 	private String nome;
@@ -50,7 +50,7 @@ public class ListarPessoasController extends Controller {
 
 	@Override
 	public String requestAction() {
-		pessoas = pessoaService.findAll(Pessoa.class);
+		pessoas = pessoaService.findAll();
 		return null;
 	}
 
@@ -59,7 +59,16 @@ public class ListarPessoasController extends Controller {
 	 */
 
 	public void pesquisar() {
-		pessoas = pessoaService.findByNome(nome);
+		pessoas = pessoaService.findAllWithJpql();
+	}
+
+	public List<String> filterName(String query) {
+		List<String> retorno = new ArrayList<>();
+		for (Pessoa pessoa : pessoas) {
+			if (pessoa.getNome().toLowerCase().startsWith(query))
+				retorno.add(pessoa.getNome());
+		}
+		return retorno;
 	}
 
 	/*

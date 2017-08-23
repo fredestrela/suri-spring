@@ -22,49 +22,51 @@ package br.com.surittec.surispring.example.service;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import br.com.surittec.surispring.example.domain.entity.Pessoa;
-import br.com.surittec.surispring.example.domain.repository.GenericEntityRepository;
 import br.com.surittec.surispring.example.domain.repository.PessoaRepository;
 import br.com.surittec.surispring.example.util.i18n.Messages;
-import br.com.surittec.surispring.jpa.service.EntityService;
 import br.com.surittec.util.validation.Assert;
 
 @Service
-public class PessoaService extends EntityService {
+public class PessoaService extends br.com.surittec.surispring.core.service.Service {
 
-	@Inject
-	private GenericEntityRepository genericEntityRepository;
-
-	@Inject
+	@Autowired
 	private PessoaRepository pessoaRepository;
 
-	@Inject
+	@Autowired
 	private Messages messages;
-
-	/*
-	 * Protected Methods
-	 */
-
-	@Override
-	protected GenericEntityRepository getGenericEntityRepository() {
-		return genericEntityRepository;
-	}
 
 	/*
 	 * Public Methods
 	 */
 
 	public List<Pessoa> findByNome(String nome) {
-		return pessoaRepository.findByNome(nome);
+		return pessoaRepository.findPessoaByNome(nome);
+	}
+
+	public List<Pessoa> findAll() {
+		return pessoaRepository.findAll();
+	}
+
+	public List<Pessoa> findAllWithJpql() {
+		return pessoaRepository.findAllWithJpql();
 	}
 
 	public void save(Pessoa pessoa) {
-		Assert.isTrue(pessoaRepository.isUnique(pessoa), messages.pessoaCadastroFalhaUnicidade());
+		ExampleMatcher matcher = ExampleMatcher.matching()
+				.withIgnorePaths("email")
+				.withIgnoreCase()
+				.withIncludeNullValues();
 
-		super.save(pessoa);
+		Example<Pessoa> example = Example.of(pessoa, matcher);
+
+		Assert.isFalse(pessoaRepository.exists(example), messages.pessoaCadastroFalhaUnicidade());
+
+		pessoaRepository.save(pessoa);
 	}
 }

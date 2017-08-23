@@ -7,11 +7,11 @@
 	<parent>
 		<groupId>br.com.surittec</groupId>
 		<artifactId>suri-pom</artifactId>
-		<version>1.0.0</version>
+		<version>1.1.0</version>
 	</parent>
 	
 	<artifactId>suri-spring</artifactId>
-	<version>3.0.0</version>
+	<version>4.0.0</version>
 	<packaging>pom</packaging>
 
 	<name>Suri Spring</name>
@@ -113,6 +113,20 @@
 			</dependency>
 			
 			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+        		<artifactId>spring-data-jpa</artifactId>
+				<version>${spring-data.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			
+			<dependency>
 				<groupId>org.aspectj</groupId>
 				<artifactId>aspectjrt</artifactId>
 				<version>${aspectj.version}</version>
@@ -170,6 +184,13 @@
 				<scope>compile</scope>
 			</dependency>
 			
+			<dependency>
+				<groupId>br.com.surittec</groupId>
+				<artifactId>suri-bootstrap</artifactId>
+				<version>${suri-bootstrap.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			
 			<!-- Surittec SURI-SPRING -->
 			
 			<dependency>
@@ -182,6 +203,13 @@
 			<dependency>
 				<groupId>br.com.surittec</groupId>
 				<artifactId>suri-spring-jpa</artifactId>
+				<version>${project.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>br.com.surittec</groupId>
+				<artifactId>suri-spring-data</artifactId>
 				<version>${project.version}</version>
 				<scope>compile</scope>
 			</dependency>
@@ -206,12 +234,13 @@
 	<modules>
 		<module>core</module>
 		<module>jpa</module>
+		<module>data</module>
 		<module>faces</module>
 		<module>security</module>
 	</modules>
 	
 	<dependencies>
-		
+	
 		<!-- Spring -->
 		
 		<dependency>
@@ -256,20 +285,22 @@
 	</dependencies>
 	
 	<properties>
- 		<eap-bom.version>6.3.2</eap-bom.version>
+ 		<eap-bom.version>6.4.1</eap-bom.version>
  		
-		<spring.version>3.2.13.RELEASE</spring.version>
-        <spring-security.version>3.2.7.RELEASE</spring-security.version>
-        <aspectj.version>1.7.4</aspectj.version>
+		<spring.version>4.3.10.RELEASE</spring.version>
+        <spring-security.version>4.2.3.RELEASE</spring-security.version>
+        <spring-data.version>1.11.6.RELEASE</spring-data.version>
+        <aspectj.version>1.8.9</aspectj.version>
         <cglib.version>3.0</cglib.version>
 		
 		<rewrite.version>2.0.12.Final</rewrite.version>
 		
-		<suri-util.version>1.0.4</suri-util.version>
-		<suri-quartz.version>1.0.1</suri-quartz.version>
-		<suri-jpa.version>1.0.0</suri-jpa.version>
-		<suri-validation.version>1.0.0</suri-validation.version>
-		<suri-faces.version>1.0.0</suri-faces.version>
+		<suri-util.version>1.0.9</suri-util.version>
+		<suri-quartz.version>1.0.4</suri-quartz.version>
+		<suri-jpa.version>1.0.1</suri-jpa.version>
+		<suri-validation.version>1.0.2</suri-validation.version>
+		<suri-faces.version>1.0.17</suri-faces.version>
+		<suri-bootstrap.version>2.0.10</suri-bootstrap.version>
 	</properties>
 	
 </project>

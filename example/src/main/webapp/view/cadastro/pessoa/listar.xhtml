@@ -31,6 +31,11 @@
 	    			<e:field id="nomeField" fieldId="nomeInput" label="#{labels['campo.nome']}" inputStyle="col-lg-3">
 						<h:inputText id="nomeInput" value="#{listarPessoasController.nome}" maxlength="100" styleClass="form-control"/>
 					</e:field>
+					
+					<e:field id="autocompleteField" fieldId="autocompleteInput" label="#{labels['campo.nome.autocomplete']}" inputStyle="col-lg-3">
+				        <p:autoComplete id="autocompleteInput" dropdown="true" value="#{listarPessoasController.nome}"  styleClass="form-control"
+				        	completeMethod="#{listarPessoasController.filterName}" effect="fade"  />
+					</e:field>
 	    			
 	    			<e:controls>
 						<h:commandButton action="#{listarPessoasController.pesquisar()}" value="#{labels['acao.pesquisar']}" styleClass="btn btn-primary"/>

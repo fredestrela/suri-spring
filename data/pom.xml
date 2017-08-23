@@ -10,7 +10,7 @@
 		<version>4.0.0</version>
 	</parent>
 	
-	<artifactId>suri-spring-jpa</artifactId>
+	<artifactId>suri-spring-data</artifactId>
 	<packaging>jar</packaging>
 	
 	<name>Suri Spring JPA</name>
@@ -31,6 +31,13 @@
 			<artifactId>spring-orm</artifactId>
 		</dependency>
 		
+		<!-- JPA -->
+		
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+		</dependency>
+		
 		<!-- Surittec -->
 		
 		<dependency>
@@ -39,8 +46,15 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>br.com.surittec</groupId>
-			<artifactId>suri-jpa</artifactId>
+			<groupId>org.springframework.data</groupId>
+        	<artifactId>spring-data-jpa</artifactId>
+		</dependency>
+		
+		<!-- apache commons -->
+		
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
 		</dependency>
 		
 	</dependencies>

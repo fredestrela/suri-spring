@@ -18,21 +18,56 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package br.com.surittec.surispring.jpa.repository;
+package br.com.surittec.surispring.data.repository;
 
-import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Collection;
+
+import javax.persistence.EntityManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.com.surittec.surijpa.repository.EntityRepositorySupport;
+import br.com.surittec.surispring.data.criteria.JPQL;
 
 /**
- * Suporte para classes de persistência, com encapsulamento do uso do {@link javax.persistence.EntityManager} e provendo algumas operações necessárias
- * manter ou pesquisar entidades.
+ * Suporte para classes de persistência, com encapsulamento do uso do
+ * {@link javax.persistence.EntityManager} e provendo algumas operações necessárias manter ou
+ * pesquisar entidades.
  */
-public abstract class EntityRepository<E, PK extends Serializable> extends EntityRepositorySupport<E, PK> {
+public abstract class RepositorySupport {
 
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	protected abstract EntityManager getEntityManager();
+
+	/**
+	 * Create a JPQL support
+	 * 
+	 * @return jpql
+	 */
+	protected JPQL jpql() {
+		return new JPQL(getEntityManager());
+	}
+
+	/**
+	 * Cria a JPQL support já iniciando o select
+	 * 
+	 * @param select
+	 * @return
+	 */
+	public JPQL select(String... select) {
+		return jpql().select(Arrays.asList(select));
+	}
+
+	/**
+	 * Cria a JPQL support já iniciando o select
+	 * 
+	 * @param select
+	 * @return
+	 */
+	public JPQL select(Collection<String> selects) {
+		return jpql().select(selects);
+	}
 
 }
