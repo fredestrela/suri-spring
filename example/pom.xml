@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>br.com.surittec</groupId>
 		<artifactId>suri-spring</artifactId>
-		<version>3.0.0</version>
+		<version>4.0.0</version>
 	</parent>
 
 	<artifactId>suri-spring-example</artifactId>
@@ -91,6 +91,12 @@
 		</dependency>
 		
 		<dependency>
+			<groupId>org.springframework.data</groupId>
+        	<artifactId>spring-data-jpa</artifactId>
+        	<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<scope>compile</scope>
@@ -124,12 +130,17 @@
 		
 		<dependency>
 			<groupId>br.com.surittec</groupId>
-			<artifactId>suri-spring-jpa</artifactId>
+			<artifactId>suri-spring-data</artifactId>
 		</dependency>
 		
 		<dependency>
 			<groupId>br.com.surittec</groupId>
 			<artifactId>suri-spring-faces</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>br.com.surittec</groupId>
+			<artifactId>suri-bootstrap</artifactId>
 		</dependency>
 		
 	</dependencies>

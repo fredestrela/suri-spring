@@ -22,54 +22,13 @@ package br.com.surittec.surispring.example.domain.repository;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import org.apache.commons.lang.StringUtils;
-import org.springframework.stereotype.Repository;
-
-import br.com.surittec.surijpa.criteria.JPQL;
 import br.com.surittec.surispring.example.domain.entity.Pessoa;
-import br.com.surittec.surispring.jpa.repository.EntityRepository;
 
-@Repository
-public class PessoaRepository extends EntityRepository<Pessoa, Long> {
+public interface PessoaRepository extends JpaRepository<Pessoa, Long>, PessoaRepositoryCustom {
 
-	@PersistenceContext
-	private EntityManager entityManager;
+	List<Pessoa> findPessoaByNome(String nome);
 
-	@Override
-	protected EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	/**
-	 * Exemplo de utilizacao do JPQL
-	 */
-	public List<Pessoa> findByNome(String nome) {
-
-		JPQL jpql = jpql().from("Pessoa");
-
-		if (StringUtils.isNotBlank(nome)) {
-			jpql.where("nome = :nome").withParam("nome", nome);
-		}
-
-		return jpql.getResultList(Pessoa.class);
-	}
-
-	public boolean isUnique(Pessoa pessoa) {
-
-		JPQL jpql = jpql().select("count(p)").from("Pessoa p");
-
-		jpql.where("(p.cpf = :cpf or p.email = :email)");
-		jpql.withParam("cpf", pessoa.getCpf());
-		jpql.withParam("email", pessoa.getEmail());
-
-		if (pessoa.getId() != null) {
-			jpql.where("p.id != :id").withParam("id", pessoa.getId());
-		}
-
-		return jpql.getSingleResult(Long.class) == 0;
-	}
-
+	List<Pessoa> findAllWithJpql();
 }

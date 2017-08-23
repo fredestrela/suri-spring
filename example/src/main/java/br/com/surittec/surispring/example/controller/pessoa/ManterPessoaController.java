@@ -20,14 +20,14 @@
  */
 package br.com.surittec.surispring.example.controller.pessoa;
 
-import javax.inject.Inject;
-
 import org.ocpsoft.rewrite.annotation.Join;
 import org.ocpsoft.rewrite.annotation.Parameter;
 import org.ocpsoft.rewrite.faces.annotation.Deferred;
 import org.ocpsoft.rewrite.faces.navigate.Navigate;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.surittec.surispring.example.domain.entity.Pessoa;
+import br.com.surittec.surispring.example.domain.repository.PessoaRepository;
 import br.com.surittec.surispring.example.service.PessoaService;
 import br.com.surittec.surispring.example.util.i18n.Messages;
 import br.com.surittec.surispring.faces.controller.Controller;
@@ -39,10 +39,13 @@ public class ManterPessoaController extends Controller {
 
 	private static final long serialVersionUID = 1L;
 
-	@Inject
+	@Autowired
 	private PessoaService pessoaService;
 
-	@Inject
+	@Autowired
+	private PessoaRepository pessoaRepository;
+
+	@Autowired
 	private Messages messages;
 
 	@Parameter
@@ -66,7 +69,7 @@ public class ManterPessoaController extends Controller {
 			}
 
 			Long id = Long.parseLong(idPessoa);
-			pessoa = pessoaService.findBy(Pessoa.class, id);
+			pessoa = pessoaRepository.findOne(id);
 			if (pessoa == null)
 				throw new NumberFormatException();
 			return null;
@@ -88,7 +91,7 @@ public class ManterPessoaController extends Controller {
 	}
 
 	public Navigate excluir() {
-		pessoaService.remove(pessoa);
+		pessoaRepository.delete(pessoa);
 		addMsg(messages.globalRegistroRemovidoSucesso());
 		return Navigate.to(ListarPessoasController.class);
 	}

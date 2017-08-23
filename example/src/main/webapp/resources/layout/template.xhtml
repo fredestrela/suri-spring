@@ -5,12 +5,10 @@
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:f="http://java.sun.com/jsf/core"
 		xmlns:h="http://java.sun.com/jsf/html"
-		
 		xmlns:p="http://primefaces.org/ui"
-		
 		xmlns:s="http://www.surittec.com.br/jsf/ui"
 		xmlns:sf="http://www.surittec.com.br/jsf/fn"
-		
+		xmlns:sb="http://www.surittec.com.br/bootstrap/ui"
 		xmlns:util="http://java.sun.com/jsf/composite/components/util"
 		contentType="text/html">
 
@@ -19,15 +17,11 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 		<title>#{labels['app.name']}</title>
 		
-		<h:outputStylesheet library="primefaces" name="primefaces.css"/>
+		<sb:head responsive="true"/>
 		<h:outputStylesheet library="css" name="bootstrap.css"/>
-		<h:outputStylesheet library="css" name="suri-bootstrap.css"/>
 		<h:outputStylesheet library="css" name="style.css"/>
-		
-		<h:outputScript library="primefaces" name="jquery/jquery.js" />
-		<h:outputScript library="js" name="bootstrap.min.js" />
-		
 		<ui:insert name="head"/>
+		
 	</h:head>
 	<h:body>
 		
@@ -66,8 +60,8 @@
 		</div>
 		
 		<p:outputPanel autoUpdate="true">
-			<h:outputScript library="js" name="suri-bootstrap.js" />
 			<h:outputScript library="js" name="example.js" />
+			<sb:js responsive="true"/>
 		</p:outputPanel>
 		
 	</h:body>

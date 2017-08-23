@@ -28,9 +28,8 @@ import org.slf4j.LoggerFactory;
 import br.com.surittec.surijpa.repository.EntityRepositorySupport;
 
 /**
- * Suporte para classes de persistência, com encapsulamento do uso do
- * {@link javax.persistence.EntityManager} e provendo algumas operações
- * necessárias manter ou pesquisar entidades.
+ * Suporte para classes de persistência, com encapsulamento do uso do {@link javax.persistence.EntityManager} e provendo algumas operações necessárias
+ * manter ou pesquisar entidades.
  */
 public abstract class EntityRepository<E, PK extends Serializable> extends EntityRepositorySupport<E, PK> {
 
