@@ -25,6 +25,7 @@ import org.ocpsoft.rewrite.annotation.Parameter;
 import org.ocpsoft.rewrite.faces.annotation.Deferred;
 import org.ocpsoft.rewrite.faces.navigate.Navigate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 
 import br.com.surittec.surispring.example.domain.entity.Pessoa;
 import br.com.surittec.surispring.example.domain.repository.PessoaRepository;
@@ -69,7 +70,7 @@ public class ManterPessoaController extends Controller {
 			}
 
 			Long id = Long.parseLong(idPessoa);
-			pessoa = pessoaRepository.findOne(id);
+			pessoa = pessoaRepository.findById(id).orElse(null);
 			if (pessoa == null)
 				throw new NumberFormatException();
 			return null;

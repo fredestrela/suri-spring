@@ -11,7 +11,7 @@
 	</parent>
 	
 	<artifactId>suri-spring</artifactId>
-	<version>4.0.0</version>
+	<version>5.0.0</version>
 	<packaging>pom</packaging>
 
 	<name>Suri Spring</name>
@@ -287,19 +287,19 @@
 	<properties>
  		<eap-bom.version>6.4.1</eap-bom.version>
  		
-		<spring.version>4.3.10.RELEASE</spring.version>
-        <spring-security.version>4.2.3.RELEASE</spring-security.version>
-        <spring-data.version>1.11.6.RELEASE</spring-data.version>
+		<spring.version>5.0.7.RELEASE</spring.version>
+        <spring-security.version>5.0.6.RELEASE</spring-security.version>
+        <spring-data.version>2.0.8.RELEASE</spring-data.version>
         <aspectj.version>1.8.9</aspectj.version>
         <cglib.version>3.0</cglib.version>
 		
-		<rewrite.version>2.0.12.Final</rewrite.version>
+		<rewrite.version>3.4.2.Final</rewrite.version>
 		
 		<suri-util.version>1.0.9</suri-util.version>
 		<suri-quartz.version>1.0.4</suri-quartz.version>
 		<suri-jpa.version>1.0.1</suri-jpa.version>
 		<suri-validation.version>1.0.2</suri-validation.version>
-		<suri-faces.version>1.0.17</suri-faces.version>
+		<suri-faces.version>1.0.18</suri-faces.version>
 		<suri-bootstrap.version>2.0.10</suri-bootstrap.version>
 	</properties>
 	
